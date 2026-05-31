@@ -1,533 +1,668 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="dark">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Omar Mohamed Zoair | Data Analyst Portfolio</title>
-  <meta name="description" content="Portfolio of Omar Mohamed Zoair — Data Analyst (Power BI, Excel, Python, DAX)" />
-
-  <!-- TailwindCSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Custom CSS -->
-  <style>
-    :root {
-      --glass: rgba(255,255,255,0.08);
-      --glass-strong: rgba(255,255,255,0.16);
+  <meta name="description" content="Portfolio of Omar Mohamed Zoair — Data Analyst specializing in Power BI, Excel, Python, and DAX. Transforming raw data into meaningful insights." />
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    if (localStorage.getItem('nier-theme') === 'light') {
+      document.documentElement.classList.add('light-mode');
     }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial;
-      background: linear-gradient(180deg, #0b1020, #0a0f1a);
-      color: #e5e7eb;
-    }
-    
-    /* Aurora background effect */
-    .bg-aurora {
-      background: radial-gradient(1200px 600px at 10% -10%, rgba(59,130,246,.25), transparent 60%),
-                  radial-gradient(1000px 500px at 100% 10%, rgba(16,185,129,.20), transparent 60%),
-                  radial-gradient(900px 600px at 50% 110%, rgba(236,72,153,.20), transparent 60%),
-                  linear-gradient(180deg, #0b1020, #0a0f1a);
-      background-attachment: fixed;
-    }
-    
-    /* Glass morphism effect */
-    .glass {
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    
-    /* Dot grid background */
-    .dot-grid {
-      background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
-      background-size: 20px 20px;
-    }
-    
-    /* Shine animation for cards */
-    .shine {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .shine:after {
-      content: "";
-      position: absolute;
-      inset: -200%;
-      background: conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(255,255,255,0.08) 90deg, transparent 180deg);
-      animation: spin 10s linear infinite;
-    }
-    
-    @keyframes spin {
-      to {
-        transform: rotate(1turn);
-      }
-    }
-    
-    /* Active navigation styling */
-    .nav-active {
-      color: #60a5fa;
-    }
-    
-    /* Smooth transitions */
-    .transition-all-custom {
-      transition: all 0.3s ease;
-    }
-  </style>
+  </script>
 </head>
-<body class="bg-aurora">
-  <!-- NAVIGATION -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-gray-900/80">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">
-      <div class="w-9 h-9 rounded-xl bg-white/10 grid place-items-center shadow ring-1 ring-white/10">
-        <span class="text-xl font-black text-white">OZ</span>
+<body class="">
+  <script>
+    if (localStorage.getItem('nier-theme') === 'light') {
+      document.body.classList.add('light-mode');
+    }
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════
+       LOADING SCREEN
+       ═══════════════════════════════════════════════════════ -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-header">
+      <div class="loading-title-group">
+        <h1 class="glitch" data-text="LOADING">LOADING</h1>
+        <p>— CHECKING SYSTEM<span class="loading-dots"></span></p>
       </div>
-      <nav class="ml-auto hidden md:flex items-center gap-6 text-sm text-gray-400">
-        <a href="#home" class="hover:text-white nav-item transition-all-custom">Home</a>
-        <a href="#about" class="hover:text-white nav-item transition-all-custom">About</a>
-        <a href="#skills" class="hover:text-white nav-item transition-all-custom">Skills</a>
-        <a href="#experience" class="hover:text-white nav-item transition-all-custom">Experience</a>
-        <a href="#projects" class="hover:text-white nav-item transition-all-custom">Projects</a>
-        <a href="#education" class="hover:text-white nav-item transition-all-custom">Education</a>
-        <a href="#contact" class="hover:text-white nav-item transition-all-custom">Contact</a>
+      <div class="spin-icon"></div>
+    </div>
+    <div id="loading-logs" class="loading-logs"></div>
+    <div class="loading-bar-track">
+      <div id="loading-bar-fill" class="loading-bar-fill"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BACKGROUND DECORATION
+       ═══════════════════════════════════════════════════════ -->
+  <div class="bg-decoration" aria-hidden="true">
+    <div class="bg-ring bg-ring--tl"></div>
+    <div class="bg-ring bg-ring--tl2"></div>
+    <div class="bg-ring bg-ring--br"></div>
+    <div class="bg-ring bg-ring--br2"></div>
+    <svg class="bg-lines bg-lines--tl" aria-hidden="true">
+      <line x1="0" y1="10" x2="300%" y2="10" stroke="#5f5a4a" stroke-width="2" opacity="0.3"/>
+      <line x1="0" y1="50" x2="300%" y2="50" stroke="#5f5a4a" stroke-width="2" opacity="0.3"/>
+      <line x1="0" y1="90" x2="300%" y2="90" stroke="#5f5a4a" stroke-width="2" opacity="0.3"/>
+    </svg>
+    <svg class="bg-lines bg-lines--br" aria-hidden="true">
+      <line x1="0" y1="10" x2="300%" y2="10" stroke="#5f5a4a" stroke-width="2" opacity="0.3"/>
+      <line x1="0" y1="50" x2="300%" y2="50" stroke="#5f5a4a" stroke-width="2" opacity="0.3"/>
+      <line x1="0" y1="90" x2="300%" y2="90" stroke="#5f5a4a" stroke-width="2" opacity="0.3"/>
+    </svg>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════ -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="#home" class="nav__logo">
+        <div class="nav__logo-square"></div>
+        <span class="nav__logo-text">OZ</span>
+      </a>
+
+      <button id="nav-hamburger" class="nav__hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="nav-links" class="nav__links" aria-label="Main navigation">
+        <a href="#home" class="nav__link">
+          <span class="nav__link-icon"></span>Home
+        </a>
+        <a href="#about" class="nav__link">
+          <span class="nav__link-icon"></span>About
+        </a>
+        <a href="#skills" class="nav__link">
+          <span class="nav__link-icon"></span>Skills
+        </a>
+        <a href="#experience" class="nav__link">
+          <span class="nav__link-icon"></span>Experience
+        </a>
+        <a href="#projects" class="nav__link">
+          <span class="nav__link-icon"></span>Projects
+        </a>
+        <a href="#education" class="nav__link">
+          <span class="nav__link-icon"></span>Education
+        </a>
+        <a href="#contact" class="nav__link">
+          <span class="nav__link-icon"></span>Contact
+        </a>
+        <button id="theme-toggle" class="nav__link" aria-label="Toggle Theme" style="background: none; border: none; font-family: inherit; cursor: pointer; text-transform: uppercase; padding: 0 10px;">
+          <span id="theme-icon-container" style="display: flex; align-items: center; justify-content: center; width: 24px; height: 24px;">
+            <!-- Sun Icon (shown in Dark Mode to switch to Light Mode) -->
+            <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <!-- Moon Icon (shown in Light Mode to switch to Dark Mode) -->
+            <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; display: none;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+        </button>
       </nav>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section id="home" class="relative pt-20 pb-16 md:pt-32 md:pb-24">
-    <div class="absolute inset-0 dot-grid opacity-20"></div>
-    <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-12 gap-8 items-center">
-      
-      <!-- Left Side (Text) -->
-      <div class="md:col-span-7">
-        <p class="text-lg mb-2 text-blue-400">Hello, I'm</p>
-        <h1 class="text-4xl md:text-6xl font-black leading-tight text-white">Omar Mohamed Zoair</h1>
-        <p class="mt-4 text-lg md:text-xl text-gray-400">Data Analyst • Power BI • Excel • Python • DAX</p>
-        <p class="mt-2 text-lg text-gray-400">Transforming raw data into meaningful insights</p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#projects" class="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold shadow-lg shadow-blue-700/20 transition-all-custom">View My Work</a>
-          <a href="#contact" class="px-5 py-3 rounded-xl glass hover:bg-white/10 font-semibold transition-all-custom">Hire Me</a>
-          <a href="mailto:omarmzoair@gmail.com" class="px-5 py-3 rounded-xl glass hover:bg-white/10 font-semibold transition-all-custom">Email</a>
-        </div>
-        <div class="mt-6 text-sm text-gray-400">
-          Cairo, Egypt • Arabic & English • Open to internships and data analyst roles
-        </div>
-        <div class="flex gap-4 mt-8">
-          <a href="https://www.linkedin.com/in/omar-zoair-046b0031a/" target="_blank" rel="noopener noreferrer"
-            class="p-3 rounded-full glass hover:bg-blue-600 transition-all-custom">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-              <rect x="2" y="9" width="4" height="12"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-          </a>
-          <a href="https://github.com/OmarMohammmed2006" target="_blank" rel="noopener noreferrer"
-            class="p-3 rounded-full glass hover:bg-gray-800 transition-all-custom">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-            </svg>
-          </a>
-          <a href="mailto:omarmzoair@gmail.com"
-            class="p-3 rounded-full glass hover:bg-red-600 transition-all-custom">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </a>
-        </div>
-      </div>
+  <!-- ═══════════════════════════════════════════════════════
+       MAIN CONTENT
+       ═══════════════════════════════════════════════════════ -->
+  <main id="main-content" class="main-content">
 
-      <!-- Right Side (Profile + Contact Info) -->
-      <div class="md:col-span-5 flex flex-col items-center gap-6">
-        
-        <!-- Profile Photo -->
-        <img src="omar.jpg" alt="Omar Mohamed Zoair" 
-     class="w-56 h-56 object-cover rounded-full shadow-lg border-4 border-white/10">
+    <!-- ── HERO ── -->
+    <section id="home" class="section section--hero">
+      <div class="hero">
+        <div class="hero__left">
+          <p class="hero__greeting">Hello, I'm</p>
+          <h1 class="hero__name glitch" data-text="Omar Mohamed Zoair">Omar Mohamed Zoair</h1>
+          <p class="hero__title">Machine Learning / AI Engineer • Data Analyst</p>
+          <p class="hero__subtitle">Transforming raw data into meaningful insights using Python, ML, and Analytics</p>
 
-        <!-- Contact Card -->
-        <div class="glass shine rounded-2xl p-6 border-white/10 w-full">
-          <ul class="space-y-3 text-sm">
-            <li><span class="text-gray-400">Phone:</span> <a class="hover:underline" href="tel:+201556430644">+20 155 643 0644</a></li>
-            <li><span class="text-gray-400">Email:</span> <a class="hover:underline" href="mailto:omarmzoair@gmail.com">omarmzoair@gmail.com</a></li>
-            <li><span class="text-gray-400">LinkedIn:</span> <a class="hover:underline" target="_blank" href="https://www.linkedin.com/in/omar-zoair-046b0031a/">/omar-zoair</a></li>
-            <li><span class="text-gray-400">GitHub:</span> <a class="hover:underline" target="_blank" href="https://github.com/OmarMohammmed2006">@OmarMohammmed2006</a></li>
-          </ul>
-          <div class="mt-6 grid grid-cols-3 gap-3 text-center">
-            <div class="glass rounded-xl p-4">
-              <div class="text-2xl font-extrabold">3.75</div>
-              <div class="text-xs text-gray-400">GPA</div>
+          <div class="hero__actions">
+            <a href="CV.pdf" target="_blank" class="nier-btn">
+              <span class="nier-btn__icon"></span>
+              <span>Download CV</span>
+            </a>
+            <a href="#projects" class="nier-btn">
+              <span class="nier-btn__icon"></span>
+              <span>View My Work</span>
+            </a>
+            <a href="#contact" class="nier-btn">
+              <span class="nier-btn__icon"></span>
+              <span>Hire Me</span>
+            </a>
+            <a href="mailto:omarmzoair@gmail.com" class="nier-btn">
+              <span class="nier-btn__icon"></span>
+              <span>Email</span>
+            </a>
+          </div>
+
+          <p class="hero__meta">Cairo, Egypt • Arabic & English • Top 6th student (GPA 3.7)</p>
+
+          <div class="hero__socials">
+            <a href="https://www.linkedin.com/in/omar-zoair-046b0031a/" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="https://github.com/OmarMohammmed2006" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+            </a>
+            <a href="https://linktr.ee/omarzoair" target="_blank" rel="noopener noreferrer" class="hero__social-link" aria-label="Linktree">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__right">
+          <div class="hero__photo-wrapper">
+            <img src="omar.jpg" alt="Omar Mohamed Zoair" class="hero__photo" />
+            <div class="hero__photo-corner hero__photo-corner--tl"></div>
+            <div class="hero__photo-corner hero__photo-corner--tr"></div>
+            <div class="hero__photo-corner hero__photo-corner--bl"></div>
+            <div class="hero__photo-corner hero__photo-corner--br"></div>
+          </div>
+
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <div class="hero__stat-value">3.7</div>
+              <div class="hero__stat-label">GPA</div>
             </div>
-            <div class="glass rounded-xl p-4">
-              <div class="text-2xl font-extrabold">4+</div>
-              <div class="text-xs text-gray-400">Projects</div>
+            <div class="hero__stat">
+              <div class="hero__stat-value">4+</div>
+              <div class="hero__stat-label">Projects</div>
             </div>
-            <div class="glass rounded-xl p-4">
-              <div class="text-2xl font-extrabold">2</div>
-              <div class="text-xs text-gray-400">Internships</div>
+            <div class="hero__stat">
+              <div class="hero__stat-value">2</div>
+              <div class="hero__stat-label">Internships</div>
+            </div>
+          </div>
+
+          <div class="widget hero__contact-card">
+            <div class="widget__header widget__header--dark">
+              <div class="widget__header-square"></div>
+              <span class="widget__header-title">Quick Info</span>
+            </div>
+            <div class="widget__body">
+              <ul class="hero__contact-list">
+                <li class="hero__contact-item">
+                  <span>Phone</span>
+                  <a href="tel:+201556430644">+20 155 643 0644</a>
+                </li>
+                <li class="hero__contact-item">
+                  <span>Email</span>
+                  <a href="mailto:omarmzoair@gmail.com">omarmzoair@gmail.com</a>
+                </li>
+                <li class="hero__contact-item">
+                  <span>LinkedIn</span>
+                  <a href="https://www.linkedin.com/in/omar-zoair-046b0031a/" target="_blank">/omar-zoair</a>
+                </li>
+                <li class="hero__contact-item">
+                  <span>Linktree</span>
+                  <a href="https://linktr.ee/omarzoair" target="_blank">/omarzoair</a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ABOUT SECTION -->
-  <section id="about" class="py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="glass rounded-2xl p-6 md:p-10">
-        <h2 class="text-2xl md:text-3xl font-bold text-white">About Me</h2>
-        <p class="mt-4 text-gray-300 leading-relaxed">
-          Motivated and detail-oriented junior data analyst with hands-on experience in Power BI and Excel. I specialize in designing clear and insightful dashboards, performing data cleaning and visualization, and creating reports to support data-driven decisions. Passionate about uncovering the stories hidden in data and constantly learning to stay ahead in the field.
-        </p>
+    <div class="nier-strip"></div>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" class="section reveal">
+      <div class="section-title">
+        <div class="section-title__bar">
+          <div class="section-title__bar-main"></div>
+          <div class="section-title__bar-thin"></div>
+        </div>
+        <h2 class="section-title__text">About Me</h2>
       </div>
-    </div>
-  </section>
 
-  <!-- SKILLS SECTION -->
-  <section id="skills" class="py-12">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white">Skills & Expertise</h2>
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="glass rounded-2xl p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-400">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-            <h3 class="font-semibold text-white">Technical Skills</h3>
-          </div>
-          <ul class="mt-3 space-y-1 text-sm text-gray-400 list-disc pl-5">
-            <li>Power BI</li>
-            <li>Excel</li>
-            <li>Python</li>
-            <li>DAX</li>
-            <li>Power Query</li>
-            <li>C++</li>
-            <li>Git & GitHub</li>
-          </ul>
+      <div class="widget">
+        <div class="widget__header">
+          <div class="widget__header-square"></div>
+          <span class="widget__header-title">Profile</span>
         </div>
-        <div class="glass rounded-2xl p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-400">
-              <line x1="18" y1="20" x2="18" y2="10"></line>
-              <line x1="12" y1="20" x2="12" y2="4"></line>
-              <line x1="6" y1="20" x2="6" y2="14"></line>
-            </svg>
-            <h3 class="font-semibold text-white">Interpersonal Skills</h3>
-          </div>
-          <ul class="mt-3 space-y-1 text-sm text-gray-400 list-disc pl-5">
-            <li>Problem Solving</li>
-            <li>Team Collaboration</li>
-            <li>Attention to Details</li>
-            <li>Adaptability</li>
-            <li>Presentation Skills</li>
-          </ul>
-        </div>
-        <div class="glass rounded-2xl p-6">
-          <div class="flex items-center gap-3 mb-4">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-            </svg>
-            <h3 class="font-semibold text-white">Languages</h3>
-          </div>
-          <ul class="mt-3 space-y-1 text-sm text-gray-400 list-disc pl-5">
-            <li>Arabic (Native)</li>
-            <li>English (B2)</li>
-          </ul>
+        <div class="widget__body">
+          <p style="margin-bottom: 1rem;">Aspiring Machine Learning / AI Engineer with a strong foundation in Python, data analysis, and machine learning algorithms, built through national programs, hands-on projects, and competitive achievements. Experienced in building and evaluating ML models using supervised and unsupervised learning techniques, performing end-to-end data analysis, and developing insightful Power BI and Excel dashboards.</p>
+          <p>Currently pursuing a Computer Science & AI degree at Cairo University (Top 6th student, GPA 3.7) with a focused interest in AI engineering, deep learning, and intelligent systems. Passionate about solving real-world problems through data-driven solutions and eager to grow in a collaborative, innovation-driven environment.</p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- EXPERIENCE SECTION -->
-  <section id="experience" class="py-12">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white">Experience</h2>
-      <div class="space-y-4">
-        <article class="glass rounded-2xl p-6 border-l-4 border-blue-500">
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <h3 class="font-semibold text-white">Data Analyst Specialist</h3>
-            <span class="text-xs text-blue-400">DEPI • Jun 2025 - 2026</span>
-          </div>
-          <ul class="mt-3 list-disc pl-5 text-sm text-gray-400 space-y-1">
-            <li>Gained experience in data analysis with Excel, Power Query, and Power BI.</li>
-            <li>Developed foundational skills in handling and processing dashboards efficiently.</li>
-          </ul>
-        </article>
-        <article class="glass rounded-2xl p-6 border-l-4 border-purple-500">
-          <div class="flex items-center justify-between flex-wrap gap-2">
-            <h3 class="font-semibold text-white">Data Analysis Intern</h3>
-            <span class="text-xs text-purple-400">DECI • Sept 2022 - 2023</span>
-          </div>
-          <ul class="mt-3 list-disc pl-5 text-sm text-gray-400 space-y-1">
-            <li>Gained experience in data analysis and cleaning with Pandas, NumPy, and Matplotlib.</li>
-            <li>Developed foundational skills in processing datasets efficiently.</li>
-          </ul>
-        </article>
+      <div class="widget" style="margin-top: 1.5rem; border-color: var(--nier-brown);">
+        <div class="widget__header widget__header--dark">
+          <div class="widget__header-square"></div>
+          <span class="widget__header-title">Key Achievement</span>
+        </div>
+        <div class="widget__body">
+          <p style="font-size: 1.1rem; color: var(--nier-beige);"><strong>1st Place Winner</strong> — DECI GEEKS Level 3 Data Science Coding Competition</p>
+          <p style="margin-top: 0.5rem;">Competed as part of team 'MOMO' and secured first place in this national hackathon powered by Dell Technologies (Feb 2023).</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PROJECTS SECTION -->
-  <section id="projects" class="py-12">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-white">Featured Projects</h2>
-        <a href="https://github.com/OmarMohammmed2006" target="_blank" class="text-sm hover:underline text-gray-400">See all on GitHub →</a>
+    <div class="nier-strip"></div>
+
+    <!-- ── SKILLS ── -->
+    <section id="skills" class="section reveal">
+      <div class="section-title">
+        <div class="section-title__bar">
+          <div class="section-title__bar-main"></div>
+          <div class="section-title__bar-thin"></div>
+        </div>
+        <h2 class="section-title__text">Skills & Expertise</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <a href="https://github.com/OmarMohammmed2006/WeRateDogs_Data_Analysis" target="_blank" class="glass rounded-2xl overflow-hidden block hover:ring-1 hover:ring-white/30 transition-all-custom">
-          <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-80">
-              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-            </svg>
+      <div class="skills-grid">
+        <div class="widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Technical</span>
           </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-white">WeRateDogs Twitter Analysis</h3>
-            <p class="mt-2 text-sm text-gray-400">Analyzed Twitter data using Python, Pandas, NumPy, and Matplotlib to uncover engagement patterns and content insights.</p>
-            <div class="mt-3 text-xs text-blue-400">Python • Pandas • NumPy • Matplotlib</div>
+          <div class="widget__body">
+            <ul class="skill-list">
+              <li class="skill-item">Python (Pandas, NumPy, Scikit-learn)</li>
+              <li class="skill-item">Machine Learning & Deep Learning</li>
+              <li class="skill-item">SQL</li>
+              <li class="skill-item">Power BI & Excel</li>
+              <li class="skill-item">Data Cleaning & EDA</li>
+              <li class="skill-item">Data Structures & Linear Algebra</li>
+              <li class="skill-item">C++, HTML, CSS, JavaScript</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Interpersonal</span>
+          </div>
+          <div class="widget__body">
+            <ul class="skill-list">
+              <li class="skill-item">Analytical Thinking</li>
+              <li class="skill-item">Problem Solving</li>
+              <li class="skill-item">Team Collaboration</li>
+              <li class="skill-item">Attention to Detail</li>
+              <li class="skill-item">Adaptability</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Languages</span>
+          </div>
+          <div class="widget__body">
+            <ul class="skill-list">
+              <li class="skill-item">Arabic (Native)</li>
+              <li class="skill-item">English (B2)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Tools & Platforms</span>
+          </div>
+          <div class="widget__body">
+            <ul class="skill-list">
+              <li class="skill-item">SQL Server & PostgreSQL</li>
+              <li class="skill-item">Jupyter Notebook & Google Colab</li>
+              <li class="skill-item">VS Code & Visual Studio</li>
+              <li class="skill-item">Git, GitHub & Ren'Py</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="nier-strip"></div>
+
+    <!-- ── EXPERIENCE ── -->
+    <section id="experience" class="section reveal">
+      <div class="section-title">
+        <div class="section-title__bar">
+          <div class="section-title__bar-main"></div>
+          <div class="section-title__bar-thin"></div>
+        </div>
+        <h2 class="section-title__text">Experience</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="widget timeline-item">
+          <div class="widget__header widget__header--dark">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Data Analyst Specialist</span>
+            <span class="widget__header-sub">DEPI • Jun 2025 – Dec 2025</span>
+          </div>
+          <div class="widget__body">
+            <ul>
+              <li>Gained hands-on experience in data analysis, visualization, and reporting using Python, Excel, Power Query, and Power BI.</li>
+              <li>Built and presented end-to-end data projects, from data cleaning and preprocessing to generating actionable business insights.</li>
+              <li>Applied statistical techniques and analytical thinking to solve real-world business problems.</li>
+              <li>Completed Business English communication training (Berlitz Egypt).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="widget timeline-item">
+          <div class="widget__header widget__header--dark">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Data Science Intern</span>
+            <span class="widget__header-sub">DECI • Sep 2022 – Jun 2023</span>
+          </div>
+          <div class="widget__body">
+            <ul>
+              <li>Gained experience in data analysis and cleaning using Pandas, NumPy, and Matplotlib.</li>
+              <li>Developed foundational skills in handling and processing datasets efficiently.</li>
+              <li>Achieved 1st place in the DECI GEEKS Level 3 Data Science coding competition (powered by Dell Technologies).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="nier-strip"></div>
+
+    <!-- ── PROJECTS ── -->
+    <section id="projects" class="section reveal">
+      <div class="projects-header">
+        <div class="section-title" style="margin-bottom: 0;">
+          <div class="section-title__bar">
+            <div class="section-title__bar-main"></div>
+            <div class="section-title__bar-thin"></div>
+          </div>
+          <h2 class="section-title__text">Featured Projects</h2>
+        </div>
+        <a href="https://github.com/OmarMohammmed2006" target="_blank" class="see-all">See all on GitHub →</a>
+      </div>
+
+      <div class="projects-grid">
+        <a href="https://github.com/OmarMohammmed2006/WeRateDogs_Data_Analysis" target="_blank" class="project-card widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">WeRateDogs Twitter Analysis</span>
+          </div>
+          <div class="widget__body">
+            <p class="project-card__desc">Data analysis and wrangling project gathering, assessing, and cleaning a dirty dataset from Twitter to find insights.</p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">Python</span>
+              <span class="project-card__tag">Pandas</span>
+              <span class="project-card__tag">NumPy</span>
+              <span class="project-card__tag">Matplotlib</span>
+            </div>
           </div>
         </a>
-        <a href="https://vimeo.com/user247260502" target="_blank" class="glass rounded-2xl overflow-hidden block hover:ring-1 hover:ring-white/30 transition-all-custom">
-          <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-80">
-              <line x1="18" y1="20" x2="18" y2="10"></line>
-              <line x1="12" y1="20" x2="12" y2="4"></line>
-              <line x1="6" y1="20" x2="6" y2="14"></line>
-            </svg>
+
+        <a href="https://vimeo.com/user247260502" target="_blank" class="project-card widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">HR Analytics Dashboard</span>
           </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-white">HR Analytics Dashboard</h3>
-            <p class="mt-2 text-sm text-gray-400">Developed interactive HR dashboard using Power BI with custom DAX measures to analyze attrition and workforce demographics.</p>
-            <div class="mt-3 text-xs text-purple-400">Power BI • Power Query • DAX</div>
-          </div>
-        </a>
-        <a href="https://vimeo.com/user247260502" target="_blank" class="glass rounded-2xl overflow-hidden block hover:ring-1 hover:ring-white/30 transition-all-custom">
-          <div class="h-48 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-80">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-          </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-white">Excel Dashboard Analysis</h3>
-            <p class="mt-2 text-sm text-gray-400">Built dynamic Excel dashboards with Power Query and Pivot Tables to analyze workforce metrics.</p>
-            <div class="mt-3 text-xs text-gray-400">Excel • Power Query • Pivot Tables</div>
+          <div class="widget__body">
+            <p class="project-card__desc">Developed interactive HR dashboard using Power BI with custom DAX measures to analyze attrition and workforce demographics.</p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">Power BI</span>
+              <span class="project-card__tag">Power Query</span>
+              <span class="project-card__tag">DAX</span>
+            </div>
           </div>
         </a>
-        <a href="https://vimeo.com/user247260502" target="_blank" class="glass rounded-2xl overflow-hidden block hover:ring-1 hover:ring-white/30 transition-all-custom">
-          <div class="h-48 bg-gradient-to-br from-yellow-600 to-orange-600 flex items-center justify-center">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white opacity-80">
-              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
-              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
-              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
-            </svg>
+
+        <a href="https://github.com/OmarMohammmed2006/SQLApp" target="_blank" class="project-card widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">SQLApp</span>
           </div>
-          <div class="p-6">
-            <h3 class="font-semibold text-white">Supermarket Sales Dashboard</h3>
-            <p class="mt-2 text-sm text-gray-400">Created interactive sales dashboard using Power BI to track revenue, orders, and analyze supermarket performance metrics.</p>
-            <div class="mt-3 text-xs text-yellow-400">Power BI • Power Query • DAX</div>
+          <div class="widget__body">
+            <p class="project-card__desc">A Python-based application designed to interact with a database, run SQL inquiries, and manage sessions.</p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">Python</span>
+              <span class="project-card__tag">JSON</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/OmarMohammmed2006/XO-BoardGame" target="_blank" class="project-card widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">XO-BoardGame</span>
+          </div>
+          <div class="widget__body">
+            <p class="project-card__desc">Collection of classic board game implementations, ranging from web-based Tic-Tac-Toe to complex C++ console variants.</p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">C++</span>
+              <span class="project-card__tag">CMake</span>
+              <span class="project-card__tag">HTML/CSS/JS</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/OmarMohammmed2006/audio_program" target="_blank" class="project-card widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Audio Mixing Program</span>
+          </div>
+          <div class="widget__body">
+            <p class="project-card__desc">An interactive audio mixing and playback application featuring a GUI, playlist management, and a waveform visualizer.</p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">C++</span>
+              <span class="project-card__tag">CMake</span>
+              <span class="project-card__tag">Taglib</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/OmarMohammmed2006/image_assignment" target="_blank" class="project-card widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Image Processing Tool</span>
+          </div>
+          <div class="widget__body">
+            <p class="project-card__desc">A C++ command-line tool capable of applying various filters to images of any size across popular formats.</p>
+            <div class="project-card__tags">
+              <span class="project-card__tag">C/C++</span>
+              <span class="project-card__tag">CMake</span>
+              <span class="project-card__tag">stb_image</span>
+            </div>
           </div>
         </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- EDUCATION SECTION -->
-  <section id="education" class="py-12">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-white">Education & Certifications</h2>
-      <div class="glass rounded-2xl p-6 border-l-4 border-green-500 mb-8">
-        <div class="flex items-start gap-4">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-400 flex-shrink-0">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
-          </svg>
-          <div>
-            <h3 class="font-semibold text-white">Bachelor of Computer Sciences and AI</h3>
-            <p class="mt-1 text-green-400">Cairo University • 2024 - Present</p>
-            <p class="text-sm text-gray-400">GPA: 3.8</p>
+    <div class="nier-strip"></div>
+
+    <!-- ── EDUCATION ── -->
+    <section id="education" class="section reveal">
+      <div class="section-title">
+        <div class="section-title__bar">
+          <div class="section-title__bar-main"></div>
+          <div class="section-title__bar-thin"></div>
+        </div>
+        <h2 class="section-title__text">Education & Certifications</h2>
+      </div>
+
+      <div class="education-grid">
+        <div class="widget">
+          <div class="widget__header widget__header--dark">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Bachelor of Computer Sciences and AI</span>
+            <span class="widget__header-sub">Cairo University • Sep 2024 – Jun 2028</span>
+          </div>
+          <div class="widget__body">
+            <p>GPA: 3.7 | Rank: Top 6th Student in Class | Grade: Excellent</p>
+          </div>
+        </div>
+
+        <div class="widget">
+          <div class="widget__header">
+            <div class="widget__header-square"></div>
+            <span class="widget__header-title">Certifications</span>
+          </div>
+          <div class="widget__body">
+            <ul class="cert-list">
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Data Science & Machine Learning (AI) – CLS Learning Solutions (Apr 2026)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  AI & Machine Learning Foundations – SprintUp x Microsoft (2025)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Data Analytics – Microsoft Power BI Specialist – DEPI (Dec 2025)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Data Science & AI Level 3 Nanodegree – Udacity / MCIT (Oct 2023)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="https://www.credly.com/go/9vuDezD2" target="_blank" rel="noopener noreferrer">
+                  GitHub Foundations – GitHub (Apr 2025)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  PCEP – Certified Entry-Level Python Programmer – Python Institute (Aug 2022)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Introduction to Software Engineering – IBM / Coursera (Aug 2024)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Introduction to HTML, CSS & JavaScript – IBM / Coursera (Sep 2024)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Python Programming Basics – Mahara Tech / ITI (Oct 2025)
+                </a>
+              </li>
+              <li class="cert-item">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Embedded Systems Track – Junior Academy – ITI / MCIT (Jul–Aug 2023)
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <div class="glass rounded-2xl p-6">
-        <div class="flex items-start gap-4">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-400 flex-shrink-0">
-            <circle cx="12" cy="8" r="7"></circle>
-            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-          </svg>
-          <div class="flex-1">
-            <h3 class="font-semibold text-white mb-4">Certifications</h3>
-            <div class="space-y-2">
-              <div class="flex items-start gap-2 text-sm text-gray-400">
-                <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
-                <a href="https://verify.openedg.org/?id=SOfn.uKLu.ZOOZ" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-500 transition-all-custom">
-                  PCEP – Certified Entry-Level Python Programmer (2022)
-                </a>
-              </div>
-              <div class="flex items-start gap-2 text-sm text-gray-400">
-                <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
-                <a href="https://www.udacity.com/certificate/PA3FV7AZ" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-500 transition-all-custom">
-                  Data Science and AI from MCIT (2023)
-                </a>
-              </div>
-              <div class="flex items-start gap-2 text-sm text-gray-400">
-                <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
-                <a href="https://www.credly.com/badges/dc75de18-472d-4f5c-8a8d-3be37f8ce0f6/public_url" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-500 transition-all-custom">
-                  GitHub Foundations (2025)
-                </a>
-              </div>
-              <div class="flex items-start gap-2 text-sm text-gray-400">
-                <div class="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
-                <a href="https://www.coursera.org/account/accomplishments/verify/VNYF0M25FFQC" target="_blank" rel="noopener noreferrer" class="hover:text-yellow-500 transition-all-custom">
-                  HTML, CSS, & JavaScript from IBM (2024)
-                </a>
-              </div>
+    </section>
+
+    <div class="nier-strip"></div>
+
+    <!-- ── CONTACT ── -->
+    <section id="contact" class="section reveal">
+      <div class="section-title">
+        <div class="section-title__bar">
+          <div class="section-title__bar-main"></div>
+          <div class="section-title__bar-thin"></div>
+        </div>
+        <h2 class="section-title__text">Get In Touch</h2>
+      </div>
+
+      <div class="widget">
+        <div class="widget__header widget__header--dark">
+          <div class="widget__header-square"></div>
+          <span class="widget__header-title">Contact</span>
+        </div>
+        <div class="widget__body">
+          <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">I'm open to Machine Learning Engineer, AI, and Data Analyst roles. Let's connect and discuss how I can help your organization make data-driven decisions.</p>
+
+          <div class="contact-grid">
+            <div>
+              <h3 style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;">Quick Contact</h3>
+              <ul class="contact-info-list">
+                <li class="contact-info-item">
+                  <a href="mailto:omarmzoair@gmail.com">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    omarmzoair@gmail.com
+                  </a>
+                </li>
+                <li class="contact-info-item">
+                  <a href="tel:+201556430644">
+                    <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    +20 155 643 0644
+                  </a>
+                </li>
+                <li class="contact-info-item">
+                  <a href="https://www.linkedin.com/in/omar-zoair-046b0031a/" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    LinkedIn Profile
+                  </a>
+                </li>
+                <li class="contact-info-item">
+                  <a href="https://github.com/OmarMohammmed2006" target="_blank">
+                    <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub Profile
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem;">Send a Message</h3>
+              <form id="contactForm" class="contact-form" action="https://formspree.io/f/xpqnelqg" method="POST">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Your name" required />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="Your email" required />
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="4" placeholder="Your message" required></textarea>
+                </div>
+                <div class="form-submit">
+                  <button type="submit" class="nier-btn">
+                    <span class="nier-btn__icon"></span>
+                    <span>Send Message</span>
+                  </button>
+                </div>
+                <div id="form-status" class="form-status"></div>
+              </form>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="py-12 md:py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="glass rounded-2xl p-6 md:p-10">
-        <h2 class="text-2xl md:text-3xl font-bold text-white">Get In Touch</h2>
-        <p class="mt-4 text-gray-400">I'm open to internships and data analyst roles. Let's connect and discuss how I can help your organization make data-driven decisions.</p>
-        <div class="mt-8 flex flex-col md:flex-row gap-6">
-          <div class="md:w-1/2">
-            <h3 class="font-semibold text-white mb-4">Quick Contact</h3>
-            <div class="space-y-4">
-              <a href="mailto:omarmzoair@gmail.com" class="flex items-center gap-3 text-gray-400 hover:text-white transition-all-custom">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                omarmzoair@gmail.com
-              </a>
-              <a href="tel:+201556430644" class="flex items-center gap-3 text-gray-400 hover:text-white transition-all-custom">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                </svg>
-                +20 155 643 0644
-              </a>
-              <a href="https://www.linkedin.com/in/omar-zoair-046b0031a/" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-white transition-all-custom">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-                LinkedIn Profile
-              </a>
-              <a href="https://github.com/OmarMohammmed2006" target="_blank" class="flex items-center gap-3 text-gray-400 hover:text-white transition-all-custom">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                </svg>
-                GitHub Profile
-              </a>
-            </div>
-          </div>
-          <div class="md:w-1/2">
-            <h3 class="font-semibold text-white mb-4">Send a Message</h3>
-            <form class="space-y-4" id="contactForm">
-              <div>
-                <label for="name" class="block text-sm text-gray-400 mb-1">Name</label>
-                <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-xl glass text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your name">
-              </div>
-              <div>
-                <label for="email" class="block text-sm text-gray-400 mb-1">Email</label>
-                <input type="email" id="email" name="email" class="w-full px-4 py-3 rounded-xl glass text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your email">
-              </div>
-              <div>
-                <label for="message" class="block text-sm text-gray-400 mb-1">Message</label>
-                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-xl glass text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your message"></textarea>
-              </div>
-              <button type="submit" class="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold transition-all-custom">Send Message</button>
-            </form>
-          </div>
-        </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="nier-bar" style="height: 100%;">
+        <div class="nier-bar__main"></div>
+        <div class="nier-bar__thin"></div>
       </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="py-8 text-center text-sm text-gray-400">
-    <div class="max-w-6xl mx-auto px-4">
-      <p>© 2025 Omar Mohamed Zoair. All rights reserved.</p>
-      <p class="mt-2">Cairo, Egypt</p>
+      <span class="footer__text">© 2025 Omar Mohamed Zoair — Cairo, Egypt</span>
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script>
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Update active navigation item on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const navItems = document.querySelectorAll('.nav-item');
-    
-    function updateActiveNav() {
-      let current = '';
-      const scrollY = window.pageYOffset;
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-          current = sectionId;
-        }
-      });
-      
-      navItems.forEach(item => {
-        item.classList.remove('nav-active');
-        if (item.getAttribute('href') === `#${current}`) {
-          item.classList.add('nav-active');
-        }
-      });
-    }
-    
-    window.addEventListener('scroll', updateActiveNav);
-    updateActiveNav(); // Initialize on load
-
-    // Form submission handler
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      // In a real implementation, you would send the form data to a server
-      alert('Thank you for your message! I will get back to you soon.');
-      this.reset();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
